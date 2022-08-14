@@ -1,4 +1,6 @@
-﻿namespace Algorithms.Others
+﻿using System.Drawing;
+
+namespace Algorithms.Others
 {
     public class HuffmanCoding
     {
@@ -33,7 +35,7 @@
             var pq = new PriorityQueue<HuffmanNode, int>();
 
             //calculat character frequency
-            foreach (char c in input) 
+            foreach (char c in input)
             {
                 if (frequencyDic.ContainsKey(c))
                     frequencyDic[c]++;
@@ -42,14 +44,14 @@
             }
 
             //put frequency in priority queue
-            foreach (var pair in frequencyDic) 
+            foreach (var pair in frequencyDic)
             {
                 var node = new HuffmanNode(pair.Value, pair.Key); //frequency, character
                 pq.Enqueue(node, pair.Value);
             }
 
             //construct Trie
-            while (pq.Count > 1) 
+            while (pq.Count > 1)
             {
                 var f1 = pq.Peek().Freq;
                 var t1 = pq.Dequeue();
@@ -63,7 +65,7 @@
             GetCode(Trie, ""); // Get character codes from Trie
 
             //encode input string use character codes
-            var endcodedInput = ""; 
+            var endcodedInput = "";
             foreach (var c in input)
                 endcodedInput += EncodingDic[c];
             return endcodedInput;
@@ -104,7 +106,5 @@
             }
             return decodedString;
         }
-
-
     }
 }
