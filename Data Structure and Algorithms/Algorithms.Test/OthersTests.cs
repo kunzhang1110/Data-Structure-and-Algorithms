@@ -23,5 +23,17 @@ namespace Algorithms.Test
             Assert.AreEqual(-1, notFoundResult);
         }
 
+        [TestMethod]
+        public void Huffman_Encoding_Test()
+        {
+            var input = "BCAADDDCCACACAC";
+            var coder = new HuffmanCoding();
+            var compressedInput = coder.Encode(input);
+            var trie = coder.Trie;
+            var result = HuffmanCoding.Decode(compressedInput, trie);
+            Console.WriteLine(result);
+
+        }
+
     }
 }

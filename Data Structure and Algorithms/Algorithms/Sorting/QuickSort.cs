@@ -21,10 +21,10 @@ namespace Algorithms.Sorting
 
                 while (left <= right)
                 {
-                    // scan unti value equal or larger than pivot or right
+                    // scan unti value equal or larger than pivot or Right
                     while (left <= right && S[left].CompareTo(pivot) < 0)
                         left++;
-                    // scan until value equal or smaller than pivot or left marker
+                    // scan until value equal or smaller than pivot or Left marker
                     while (left <= right && S[right].CompareTo(pivot) > 0)
                         right--;
                     if (left <= right)
@@ -34,7 +34,7 @@ namespace Algorithms.Sorting
                         right--;
                     }
                 }
-                // put pivot into its final place (currently marked by left)
+                // put pivot into its final place (currently marked by Left)
                 (S[left], S[b]) = (S[b], S[left]);
                 Sort(S, a, left - 1);
                 Sort(S, left + 1, b);

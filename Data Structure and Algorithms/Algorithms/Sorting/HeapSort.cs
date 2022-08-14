@@ -29,7 +29,7 @@ public static void Sort(A[] data)
 
 public static void Heapify(A[] data, int n, int i)
 {
-    // Find largest among root, left child and right child
+    // Find largest among root, Left child and Right child
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
