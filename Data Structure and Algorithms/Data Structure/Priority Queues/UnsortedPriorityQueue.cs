@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data_Structure.Lists;
 
 namespace Data_Structure.Priority_Queues
@@ -14,11 +10,11 @@ namespace Data_Structure.Priority_Queues
         public UnsortedPriorityQueue() : base() { }
         public UnsortedPriorityQueue(Comparer<K> comp) : base(comp) { }
 
-        private PositionalList<Entry<K, V>>.Node<Entry<K, V>>? FindMin()
+        private Node<Entry<K, V>>? FindMin()
         {
             var small = list.First()!;
             if (small == null) return null;
-            foreach (PositionalList<Entry<K, V>>.Node<Entry<K, V>> walk in list)
+            foreach (Node<Entry<K, V>> walk in list)
             {
                 if (Compare(walk.Element, small.Element) < 0) small = walk;
             }
@@ -46,7 +42,7 @@ namespace Data_Structure.Priority_Queues
 
         public override void PrintPQ()
         {
-            foreach (PositionalList<Entry<K, V>>.Node<Entry<K, V>> walk in list)
+            foreach (Node<Entry<K, V>> walk in list)
             {
                 Console.WriteLine($"{walk.Element.Key.ToString()} {walk.Element.Value.ToString()}");
             }

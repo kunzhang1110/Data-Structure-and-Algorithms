@@ -1,25 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data_Structure.Lists
 {
     public partial class PositionalList<E>
     {
-        public class Node<T>
-        {
-            public E? Element { get; set; }
-            public Node<E>? Prev { get; set; }
-            public Node<E>? Next { get; set; }
-            public Node(E? e, Node<E>? prev, Node<E>? next)
-            {
-                Element = e;
-                Prev = prev;
-                Next = next;
-            }
-        }
         public Node<E> Header { get; set; } // Header sentinel
         public Node<E> Trailer { get; set; }// Trailer sentinel
         public int Size { get; set; }
@@ -33,7 +17,7 @@ namespace Data_Structure.Lists
 
         public Node<E> AddBetween(E e, Node<E> pre, Node<E> next)
         {
-            Node<E> newest = new Node<E>(e, pre, next);
+            var newest = new Node<E>(e, pre, next);
             pre.Next = newest;
             next.Prev = newest;
             Size++;
@@ -50,9 +34,9 @@ namespace Data_Structure.Lists
             return AddBetween(e, node, node.Next);
         }
 
-        public void AddLast(E e)
+        public Node<E> AddLast(E e)
         {
-            AddBetween(e, Trailer.Prev, Trailer);
+            return AddBetween(e, Trailer.Prev, Trailer);
         }
 
         public E? Set(Node<E> node, E e)

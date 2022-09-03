@@ -9,24 +9,24 @@ namespace Data_Structure.Trees
             get
             {
                 int count = 0;
-                foreach (Position<E> child in Positions()) count++;
+                foreach (Node<E> child in Positions()) count++;
                 return count;
             }
             set { }
         }
 
-        public abstract Position<E>? Root { get; set; }
-        public abstract Position<E>? Parent(Position<E> p);
-        public abstract IEnumerable<Position<E>> Children(Position<E> p);
+        public abstract Node<E>? Root { get; set; }
+        public abstract Node<E>? Parent(Node<E> p);
+        public abstract IEnumerable<Node<E>> Children(Node<E> p);
 
-        public virtual int NumChildren(Position<E> p)
+        public virtual int NumChildren(Node<E> p)
         {
             int count = 0;
-            foreach (Position<E> child in Children(p)) count++;
+            foreach (Node<E> child in Children(p)) count++;
             return count;
         }
 
-        public int Depth(Position<E> p)
+        public int Depth(Node<E> p)
         {
             if (IsRoot(p))
                 return 0;
@@ -34,49 +34,49 @@ namespace Data_Structure.Trees
                 return 1 + Depth(Parent(p));
         }
 
-        public int Height(Position<E> p)
+        public int Height(Node<E> p)
         {
             int h = 0;                          // base case if p is external
-            foreach (Position<E> c in Children(p))
+            foreach (Node<E> c in Children(p))
                 h = Math.Max(h, 1 + Height(c));
             return h;
         }
 
-        public bool IsInternal(Position<E> p) { return NumChildren(p) > 0; }
-        public bool IsExternal(Position<E> p) { return NumChildren(p) == 0; }
-        public bool IsRoot(Position<E> p) { return p == Root; }
+        public bool IsInternal(Node<E> p) { return NumChildren(p) > 0; }
+        public bool IsExternal(Node<E> p) { return NumChildren(p) == 0; }
+        public bool IsRoot(Node<E> p) { return p == Root; }
         public bool IsEmpty() { return Size == 0; }
 
 
-        private void PreorderSubtree(Position<E> p, ArrayList<Position<E>> snapshot)
+        private void PreorderSubtree(Node<E> p, ArrayList<Node<E>> snapshot)
         {
             snapshot.Add(p);                       // for preorder, we add position p before exploring subtrees
-            foreach (Position<E> c in Children(p))
+            foreach (Node<E> c in Children(p))
                 PreorderSubtree(c, snapshot);
         }
 
-        private IEnumerable<Position<E>> Preorder()
+        private IEnumerable<Node<E>> Preorder()
         {
-            var snapshot = new ArrayList<Position<E>>();
+            var snapshot = new ArrayList<Node<E>>();
             if (!IsEmpty())
                 PreorderSubtree(Root, snapshot);   // fill the snapshot recursively
             return snapshot;
         }
 
-        public virtual IEnumerable<Position<E>> Positions() { return Preorder(); }
+        public virtual IEnumerable<Node<E>> Positions() { return Preorder(); }
 
-        public IEnumerable<Position<E>> Breadthfirst()
+        public IEnumerable<Node<E>> Breadthfirst()
         {// Returns an iterable collection of positions of the tree in breadth-first order.
-            var snapshot = new ArrayList<Position<E>>();
+            var snapshot = new ArrayList<Node<E>>();
             if (!IsEmpty())
             {
-                var fringe = new Data_Structure.Lists.Queue<Position<E>>();
+                var fringe = new Data_Structure.Lists.Queue<Node<E>>();
                 fringe.Enqueue(Root);                 // start with the root
                 while (!fringe.IsEmpty())
                 {
-                    Position<E>? p = fringe.Dequeue();     // remove from front of the queue
+                    Node<E>? p = fringe.Dequeue();     // remove from front of the queue
                     snapshot.Add(p);                      // report this position
-                    foreach (Position<E> c in Children(p))
+                    foreach (Node<E> c in Children(p))
                         fringe.Enqueue(c);                  // add children to back of queue
                 }
             }
@@ -87,7 +87,7 @@ namespace Data_Structure.Trees
         //IEnumerable<E> Implmentation
         public class ElementEnumerator : IEnumerator<E>
         {
-            public IEnumerator<Position<E>> PositionEnumerator;
+            public IEnumerator<Node<E>> PositionEnumerator;
             private readonly AbstractTree<E> tree;
             public ElementEnumerator(AbstractTree<E> tree)
             {

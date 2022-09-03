@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Algorithms.Others
+namespace Algorithms.TextProcessing
 {
     public class HuffmanCoding
     {

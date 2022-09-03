@@ -33,7 +33,7 @@ namespace Data_Structure.Test
             var list = new PositionalList<int?>();
             foreach (var i in new int[] { 1, 3, 2, 5, 4 })
                 list.AddLast(i);
-            foreach (PositionalList<int?>.Node<int?> node in list)
+            foreach (Node<int?> node in list)
             {
                 Console.WriteLine(node.Element!.Value.ToString());
             }

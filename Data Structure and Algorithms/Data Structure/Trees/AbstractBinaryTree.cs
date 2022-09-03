@@ -4,12 +4,12 @@ namespace Data_Structure.Trees
 {
     public abstract class AbstractBinaryTree<E> : AbstractTree<E>
     {
-        public abstract Position<E>? Left(Position<E> p);
-        public abstract Position<E>? Right(Position<E> p);
+        public abstract Node<E>? Left(Node<E> p);
+        public abstract Node<E>? Right(Node<E> p);
 
-        public Position<E>? Sibling(Position<E> p)
+        public Node<E>? Sibling(Node<E> p)
         {
-            Position<E>? parent = Parent(p);
+            Node<E>? parent = Parent(p);
             if (parent == default) return default;   // p must be the root
             if (p == Left(parent))
                 return Right(parent);
@@ -17,7 +17,7 @@ namespace Data_Structure.Trees
                 return Left(parent);
         }
 
-        public override int NumChildren(Position<E> p)
+        public override int NumChildren(Node<E> p)
         {
             int count = 0;
             if (Left(p) != default)
@@ -26,9 +26,9 @@ namespace Data_Structure.Trees
                 count++;
             return count;
         }
-        public override IEnumerable<Position<E>> Children(Position<E> p)
+        public override IEnumerable<Node<E>> Children(Node<E> p)
         {
-            var snapshot = new ArrayList<Position<E>>(2);    // max capacity of 2
+            var snapshot = new ArrayList<Node<E>>(2);    // max capacity of 2
             if (Left(p) != default)
                 snapshot.Add(Left(p));
             if (Right(p) != default)
@@ -36,7 +36,7 @@ namespace Data_Structure.Trees
             return snapshot;
         }
 
-        private void InorderSubtree(Position<E> p, ArrayList<Position<E>> snapshot)
+        private void InorderSubtree(Node<E> p, ArrayList<Node<E>> snapshot)
         {
 
             if (Left(p) != default)
@@ -46,15 +46,15 @@ namespace Data_Structure.Trees
                 InorderSubtree(Right(p), snapshot);
         }
 
-        public IEnumerable<Position<E>> Inorder()
+        public IEnumerable<Node<E>> Inorder()
         {
-            var snapshot = new ArrayList<Position<E>>();
+            var snapshot = new ArrayList<Node<E>>();
             if (!IsEmpty())
                 InorderSubtree(Root, snapshot);   // fill the snapshot recursively
             return snapshot;
         }
 
-        public override IEnumerable<Position<E>> Positions()
+        public override IEnumerable<Node<E>> Positions()
         {
             return Inorder();
         }

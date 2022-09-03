@@ -7,7 +7,7 @@ namespace Data_Structure.Test
     {
 
         private readonly LinkedBinaryTree<int> lbTree = new();
-        private readonly Position<int> lbTree_five;
+        private readonly Node<int> lbTree_five;
         private readonly TreeMap<int, string> bsTree = new();
         private readonly AVLTreeMap<int, string> avlTree = new();
         private readonly SplayTreeMap<int, string> spTree = new();

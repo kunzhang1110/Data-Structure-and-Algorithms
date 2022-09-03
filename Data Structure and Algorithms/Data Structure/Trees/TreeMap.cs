@@ -12,19 +12,19 @@ namespace Data_Structure.Trees
         public TreeMap(Comparer<K> comp) : base(comp) { tree.AddRoot(default); }
         public TreeMap() : this(Comparer<K>.Default) { }
 
-        public virtual void RebalanceInsert(Position<Entry<K, V>> p) { } //for balanced tree subclass
-        public virtual void RebalanceDelete(Position<Entry<K, V>> p) { } //for balanced tree subclass
-        public virtual void RebalanceAccess(Position<Entry<K, V>> p) { } //for balanced tree subclass
+        public virtual void RebalanceInsert(Node<Entry<K, V>> p) { } //for balanced tree subclass
+        public virtual void RebalanceDelete(Node<Entry<K, V>> p) { } //for balanced tree subclass
+        public virtual void RebalanceAccess(Node<Entry<K, V>> p) { } //for balanced tree subclass
 
         //Add two leafs to new external
-        private void ExpandExternal(Position<Entry<K, V>> p, Entry<K, V> entry)
+        private void ExpandExternal(Node<Entry<K, V>> p, Entry<K, V> entry)
         {
             tree.Set(p, entry);   // store new entry at p
             tree.AddLeft(p, default);
             tree.AddRight(p, default);
         }
 
-        private Position<Entry<K, V>> TreeSearch(Position<Entry<K, V>> p, K key)
+        private Node<Entry<K, V>> TreeSearch(Node<Entry<K, V>> p, K key)
         {
             if (tree.IsExternal(p))
                 return p;                          // key not found; return the final leaf
@@ -37,18 +37,18 @@ namespace Data_Structure.Trees
                 return TreeSearch(tree.Right(p), key);  // search right subtree
         }
 
-        //  Returns position with the minimal key in the subtree rooted at Position p.
-        public Position<Entry<K, V>>? TreeMin(Position<Entry<K, V>> p)
+        //  Returns position with the minimal key in the subtree rooted at Node p.
+        public Node<Entry<K, V>>? TreeMin(Node<Entry<K, V>> p)
         {
-            Position<Entry<K, V>> walk = p;
+            Node<Entry<K, V>> walk = p;
             while (tree.IsInternal(walk))
                 walk = tree.Left(walk)!;
             return tree.Parent(walk);
         }
 
-        public Position<Entry<K, V>>? TreeMax(Position<Entry<K, V>> p)
+        public Node<Entry<K, V>>? TreeMax(Node<Entry<K, V>> p)
         {
-            Position<Entry<K, V>> walk = p;
+            Node<Entry<K, V>> walk = p;
             while (tree.IsInternal(walk))
                 walk = tree.Right(walk)!;
             return tree.Parent(walk);
@@ -96,12 +96,12 @@ namespace Data_Structure.Trees
                 V old = p.Element.Value;
                 if (tree.IsInternal(tree.Left(p)) && tree.IsInternal(tree.Right(p)))
                 { // both children are internal
-                    Position<Entry<K, V>> replacement = TreeMax(tree.Left(p));
+                    Node<Entry<K, V>> replacement = TreeMax(tree.Left(p));
                     tree.Set(p, replacement.Element);
                     p = replacement;
                 } // now p has at most one child that is an internal node
-                Position<Entry<K, V>>? leaf = (tree.IsExternal(tree.Left(p)) ? tree.Left(p) : tree.Right(p));
-                Position<Entry<K, V>>? sib = tree.Sibling(leaf);
+                Node<Entry<K, V>>? leaf = (tree.IsExternal(tree.Left(p)) ? tree.Left(p) : tree.Right(p));
+                Node<Entry<K, V>>? sib = tree.Sibling(leaf);
                 tree.Remove(leaf);
                 tree.Remove(p);                            // sib is promoted in p's place
                 RebalanceDelete(sib);                 // hook for balanced tree subclasses
@@ -124,7 +124,7 @@ namespace Data_Structure.Trees
         //Returns the entry with least key greater than or equal to given key
         public Entry<K, V>? CeilingEntry(K key)
         {
-            Position<Entry<K, V>> p = TreeSearch(tree.Root, key);
+            Node<Entry<K, V>> p = TreeSearch(tree.Root, key);
             if (tree.IsInternal(p)) return p.Element;   // exact match
             while (!tree.IsRoot(p))
             {
@@ -138,7 +138,7 @@ namespace Data_Structure.Trees
 
         public Entry<K, V>? FloorEntry(K key)
         {
-            Position<Entry<K, V>> p = TreeSearch(tree.Root, key);
+            Node<Entry<K, V>> p = TreeSearch(tree.Root, key);
             if (tree.IsInternal(p)) return p.Element;   // exact match
             while (!tree.IsRoot(p))
             {
@@ -152,7 +152,7 @@ namespace Data_Structure.Trees
         //Returns the entry with greatest key strictly less than given key
         public Entry<K, V>? LowerEntry(K key)
         {
-            Position<Entry<K, V>> p = TreeSearch(tree.Root, key);
+            Node<Entry<K, V>> p = TreeSearch(tree.Root, key);
             if (tree.IsInternal(p) && tree.IsInternal(tree.Left(p)))
                 return TreeMax(tree.Left(p))!.Element;   // exact match
             while (!tree.IsRoot(p))
@@ -167,7 +167,7 @@ namespace Data_Structure.Trees
 
         public Entry<K, V>? HigherEntry(K key)
         {
-            Position<Entry<K, V>> p = TreeSearch(tree.Root, key);
+            Node<Entry<K, V>> p = TreeSearch(tree.Root, key);
             if (tree.IsInternal(p) && tree.IsInternal(tree.Right(p)))
                 return TreeMax(tree.Right(p))!.Element;   // exact match
             while (!tree.IsRoot(p))
@@ -190,7 +190,7 @@ namespace Data_Structure.Trees
             return buffer;
         }
 
-        private void SubMapRecurse(K fromKey, K toKey, Position<Entry<K, V>> p,
+        private void SubMapRecurse(K fromKey, K toKey, Node<Entry<K, V>> p,
                             ArrayList<Entry<K, V>> buffer)
         {
             if (tree.IsInternal(p))
@@ -211,7 +211,7 @@ namespace Data_Structure.Trees
         public override IEnumerable<Entry<K, V>> EntrySet()
         {
             var buffer = new ArrayList<Entry<K, V>>(Size);
-            foreach (Position<Entry<K, V>> p in tree.Inorder())
+            foreach (Node<Entry<K, V>> p in tree.Inorder())
                 if (tree.IsInternal(p)) buffer.Add(p.Element);
             return buffer;
         }
@@ -221,7 +221,7 @@ namespace Data_Structure.Trees
             PrintRecurse(tree.Root, 0);
         }
 
-        private void PrintRecurse(Position<Entry<K, V>> p, int depth)
+        private void PrintRecurse(Node<Entry<K, V>> p, int depth)
         {
             String indent = (depth == 0 ? "" : new string(' ', depth * 2));
             if (tree.IsExternal(p))

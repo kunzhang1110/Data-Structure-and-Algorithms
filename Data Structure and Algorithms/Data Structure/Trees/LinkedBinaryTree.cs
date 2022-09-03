@@ -1,11 +1,11 @@
 ﻿namespace Data_Structure.Trees
 {
-public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
+    public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
 {
-    public override Position<E>? Root { get; set; }     // root of the tree
+    public override Node<E>? Root { get; set; }     // root of the tree
     public override int Size { get; set; }
         
-    protected Node<E> Validate(Position<E> p)
+    protected Node<E> Validate(Node<E> p)
     {
         if (p is not Node<E>)
             throw new Exception("Not valid position type");
@@ -21,25 +21,25 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return new Node<E>(e, parent, left, right);
     }
 
-    public override Position<E>? Parent(Position<E> p)
+    public override Node<E>? Parent(Node<E> p)
     {
         var node = Validate(p);
         return node.Parent;
     }
 
-    public override Position<E>? Left(Position<E> p)
+    public override Node<E>? Left(Node<E> p)
     {
         Node<E> node = Validate(p);
         return node.Left;
     }
 
-    public override Position<E>? Right(Position<E> p)
+    public override Node<E>? Right(Node<E> p)
     {
         var node = Validate(p);
         return node.Right;
     }
 
-    public Position<E> AddRoot(E? e)
+    public Node<E> AddRoot(E? e)
     {
 
         if (!IsEmpty()) throw new Exception("Tree is not empty");
@@ -48,7 +48,7 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return Root;
     }
 
-    public Position<E>? AddLeft(Position<E> p, E? e)
+    public Node<E>? AddLeft(Node<E> p, E? e)
     {
         var parent = Validate(p);
         if (parent.Left != null)
@@ -59,7 +59,7 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return child;
     }
 
-    public Position<E>? AddRight(Position<E> p, E? e)
+    public Node<E>? AddRight(Node<E> p, E? e)
     {
         var parent = Validate(p);
         if (parent.Right != null)
@@ -70,7 +70,7 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return child;
     }
 
-    public E? Set(Position<E> p, E e)
+    public E? Set(Node<E> p, E e)
     {
         var node = Validate(p);
         E? temp = node.Element;
@@ -78,7 +78,7 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return temp;
     }
 
-    public E? Remove(Position<E> p)
+    public E? Remove(Node<E> p)
     {
         var node = Validate(p);
         if (NumChildren(p) == 2)
@@ -100,7 +100,7 @@ public class LinkedBinaryTree<E> : AbstractBinaryTree<E>
         return node.Element;
     }
 
-    public void Attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2)
+    public void Attach(Node<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2)
     {
         var node = Validate(p);
         if (IsInternal(p)) throw new Exception("p must be a leaf");

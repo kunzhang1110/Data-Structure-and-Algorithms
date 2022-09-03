@@ -1,4 +1,4 @@
-﻿namespace Algorithms.Others
+﻿namespace Algorithms.TextProcessing
 {
     public class LongestCommonSubsequence
     {

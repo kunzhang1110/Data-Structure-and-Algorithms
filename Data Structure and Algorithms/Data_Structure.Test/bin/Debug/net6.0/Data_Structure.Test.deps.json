@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Data_Structure.Test/1.0.0": {
         "dependencies": {
+          "Data_Structure": "1.0.0",
           "MSTest.TestAdapter": "2.2.8",
           "MSTest.TestFramework": "2.2.8",
           "Microsoft.NET.Test.Sdk": "17.1.0",
@@ -1076,9 +1077,9 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "Data Structure/1.0.0": {
+      "Data_Structure/1.0.0": {
         "runtime": {
-          "Data Structure.dll": {}
+          "Data_Structure.dll": {}
         }
       }
     }
@@ -1705,7 +1706,7 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "Data Structure/1.0.0": {
+    "Data_Structure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

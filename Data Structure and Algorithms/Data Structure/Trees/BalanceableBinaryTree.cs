@@ -11,7 +11,7 @@ namespace Data_Structure.Trees
             return new BSTNode<Entry<K, V>>(e, parent, left, right);
         }
 
-        public int GetAux(Position<Entry<K, V>> p)
+        public int GetAux(Node<Entry<K, V>> p)
         {
             if (p is not BSTNode<Entry<K, V>>)
                 throw new Exception("Not valid type");
@@ -19,7 +19,7 @@ namespace Data_Structure.Trees
             return bstNode.Aux;
         }
 
-        public void SetAux(Position<Entry<K, V>> p, int value)
+        public void SetAux(Node<Entry<K, V>> p, int value)
         {
             var bstNode = (BSTNode<Entry<K, V>>)p;
             bstNode.Aux = value;
@@ -35,8 +35,8 @@ namespace Data_Structure.Trees
                 parent.Right = child;
         }
 
-        public void Rotate(Position<Entry<K, V>> p)
-        {    //Rotates Position p above its parent.
+        public void Rotate(Node<Entry<K, V>> p)
+        {    //Rotates Node p above its parent.
             Node<Entry<K, V>> x = Validate(p);
             Node<Entry<K, V>> y = x.Parent!;    //assume parent exists
             Node<Entry<K, V>>? z = y.Parent;    //z is grandparent of x
@@ -60,10 +60,10 @@ namespace Data_Structure.Trees
             }
         }
 
-        public Position<Entry<K, V>> Restructure(Position<Entry<K, V>> x)
+        public Node<Entry<K, V>> Restructure(Node<Entry<K, V>> x)
         {
-            Position<Entry<K, V>>? y = Parent(x);
-            Position<Entry<K, V>>? z = Parent(y);
+            Node<Entry<K, V>>? y = Parent(x);
+            Node<Entry<K, V>>? z = Parent(y);
             if ((x == Right(y)) == (y == Right(z))) // matching alignments
             {
                 Rotate(y);  // single rotation (of y)

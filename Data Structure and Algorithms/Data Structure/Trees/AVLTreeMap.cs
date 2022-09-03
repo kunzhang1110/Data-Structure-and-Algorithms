@@ -1,24 +1,24 @@
 ﻿namespace Data_Structure.Trees
 {
-public class AVLTreeMap<K, V> : TreeMap<K, V>
+    public class AVLTreeMap<K, V> : TreeMap<K, V>
 {
-    public int Height(Position<Entry<K, V>> p)
+    public int Height(Node<Entry<K, V>> p)
     {
         return tree.GetAux(p);
     }
 
-    public void RecomputeHeight(Position<Entry<K, V>> p)
+    public void RecomputeHeight(Node<Entry<K, V>> p)
     {
         tree.SetAux(p, 1 + Math.Max(Height(tree.Left(p)), Height(tree.Right(p))));
     }
 
-    public bool IsBalanced(Position<Entry<K, V>> p)
+    public bool IsBalanced(Node<Entry<K, V>> p)
     {
         return Math.Abs(Height(tree.Left(p)) - Height(tree.Right(p))) <= 1;
     }
 
     //Returns a child of p with Height no smaller than that of the other child.
-    public Position<Entry<K, V>>? TallerChild(Position<Entry<K, V>> p)
+    public Node<Entry<K, V>>? TallerChild(Node<Entry<K, V>> p)
     {
         if (Height(tree.Left(p)) > Height(tree.Right(p))) return tree.Left(p);
         if (Height(tree.Left(p)) < Height(tree.Right(p))) return tree.Right(p);
@@ -28,7 +28,7 @@ public class AVLTreeMap<K, V> : TreeMap<K, V>
         else return tree.Right(p);
     }
 
-    public void Rebalance(Position<Entry<K, V>> p)
+    public void Rebalance(Node<Entry<K, V>> p)
     {
         int oldHeight, newHeight;
         do
@@ -46,12 +46,12 @@ public class AVLTreeMap<K, V> : TreeMap<K, V>
             p = tree.Parent(p);
         } while (oldHeight != newHeight && p != null);
     }
-    public override void RebalanceInsert(Position<Entry<K, V>> p)
+    public override void RebalanceInsert(Node<Entry<K, V>> p)
     {
         Rebalance(p);
     }
 
-    public override void RebalanceDelete(Position<Entry<K, V>> p)
+    public override void RebalanceDelete(Node<Entry<K, V>> p)
     {
         if (!tree.IsRoot(p))
             Rebalance(tree.Parent(p));

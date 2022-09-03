@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data_Structure.Trees
 {
-    public class Node<E> : Position<E>
+    public class Node<E> 
     {
         public E? Element { get; set; }
         public Node<E>? Parent { get; set; }

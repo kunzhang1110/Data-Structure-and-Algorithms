@@ -86,8 +86,6 @@ C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Stru
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\Data Structure.dll
-C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\Data Structure.pdb
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\Data_Structure.Test.csproj.AssemblyReference.cache
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\Data_Structure.Test.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\Data_Structure.Test.AssemblyInfoInputs.cache
@@ -99,3 +97,5 @@ C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Stru
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\Data_Structure.Test.pdb
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\Data_Structure.Test.genruntimeconfig.cache
 C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\obj\Debug\net6.0\ref\Data_Structure.Test.dll
+C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\Data_Structure.dll
+C:\Users\kunzh\Documents\GitHub\Examples\Data Structure and Algorithms\Data Structure and Algorithms\Data_Structure.Test\bin\Debug\net6.0\Data_Structure.pdb
