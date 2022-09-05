@@ -11,9 +11,10 @@ namespace Data_Structure.Lists
     {
         public SinglyLinkedList<E> list = new SinglyLinkedList<E>();
         public int Size { get; set; }
-        public void push(E element) { list.AddFirst(element); }
-        public E? top() { return list.FirstElement(); }
-        public E? pop() { return list.RemoveFirst(); }
+        public void Push(E element) { list.AddFirst(element); }
+        public E? Top() { return list.FirstElement(); }
+        public E? Pop() { return list.RemoveFirst(); }
+        public bool IsEmpty() { return list.Size == 0; }
     }
 }
 

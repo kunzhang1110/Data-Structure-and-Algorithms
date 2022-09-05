@@ -6,25 +6,14 @@ using System.Threading.Tasks;
 
 namespace Data_Structure.Priority_Queues
 {
-    public abstract class AbstractPriorityQueue<K, V>
+    public abstract partial class AbstractPriorityQueue<K, V>
     {
-        public class Entry<A, B>
-        {
-            public K Key { get; set; }
-            public V Value { get; set; }
-
-            public Entry(K key, V value)
-            {
-                Key = key;
-                Value = value;
-            }
-        }
         public virtual int Size { get; set; }
         public Comparer<K> Comp { get; set; }
 
-        public abstract Entry<K, V> Insert(K key, V value);
-        public abstract Entry<K, V>? Min();
-        public abstract Entry<K, V>? RemoveMin();
+        public abstract PQEntry<K, V> Insert(K key, V value);
+        public abstract PQEntry<K, V>? Min();
+        public abstract PQEntry<K, V>? RemoveMin();
         public abstract void PrintPQ();
 
         public AbstractPriorityQueue()
@@ -36,7 +25,7 @@ namespace Data_Structure.Priority_Queues
             Comp = comp;
         }
 
-        public int Compare(Entry<K, V> a, Entry<K, V> b)
+        public int Compare(PQEntry<K, V> a, PQEntry<K, V> b)
         {
             return Comp.Compare(a.Key, b.Key);
         }

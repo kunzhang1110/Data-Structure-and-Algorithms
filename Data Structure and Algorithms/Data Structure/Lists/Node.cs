@@ -1,6 +1,6 @@
 ﻿namespace Data_Structure.Lists
 {
-    public class Node<E>
+    public class Node<E>:Position<E>
     {
         public E? Element { get; set; }
         public Node<E>? Prev { get; set; }

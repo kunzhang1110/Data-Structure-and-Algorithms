@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Structure.Lists;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Data_Structure.Maps
 {
@@ -25,6 +26,13 @@ namespace Data_Structure.Maps
         public int HashValue(K key)
         {
             return key!.GetHashCode() % capacity; //simple hash
+
+            //// Multiply Add and Divide Method
+            //var prime = 2147483647; //any prime bigger than capacity
+            //var rand = new Random();
+            //var scale = rand.NextInt64(prime - 1) + 1;
+            //var shift = rand.NextInt64(prime);
+            //return (int)((Math.Abs(key!.GetHashCode() * scale + shift) % prime) % capacity);
         }
 
         public void Resize(int newCap)

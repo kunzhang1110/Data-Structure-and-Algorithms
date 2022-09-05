@@ -44,11 +44,11 @@ namespace Data_Structure.Graphs
         }
 
         /**
-         * Returns the Vertices of edge e as an array of length two.
-         * If the graph is directed, the first vertex is the origin, and
-         * the second is the destination.  If the graph is undirected, the
-         * order is arbitrary.
-         */
+            * Returns the Vertices of edge e as an array of length two.
+            * If the graph is directed, the first vertex is the origin, and
+            * the second is the destination.  If the graph is undirected, the
+            * order is arbitrary.
+            */
         public Vertex<V>[] EndVertices(Edge<E> e)
         {
             return e.Endpoints;
@@ -76,11 +76,11 @@ namespace Data_Structure.Graphs
         }
 
         /**
-         * Inserts and returns a new edge between Vertices u and v, storing given element.
-         *
-         * @ if u or v are invalid Vertices, or if an edge already exists between u and v.
-         */
-        public Edge<E> InsertEdge(Vertex<V> origin, Vertex<V> dest, E element)
+            * Inserts and returns a new edge between Vertices u and v, storing given element.
+            *
+            * @ if u or v are invalid Vertices, or if an edge already exists between u and v.
+            */
+        public Edge<E> InsertEdge(Vertex<V> origin, Vertex<V> dest, E? element)
         {
             if (GetEdge(origin, dest) == null) //no existing edges
             {

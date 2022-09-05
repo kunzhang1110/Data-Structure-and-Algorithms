@@ -34,6 +34,11 @@ namespace Data_Structure.Lists
             return AddBetween(e, node, node.Next);
         }
 
+        public Node<E> AddFirst(E e)
+        {
+            return AddBetween(e, Header, Header.Next);
+        }
+
         public Node<E> AddLast(E e)
         {
             return AddBetween(e, Trailer.Prev, Trailer);
